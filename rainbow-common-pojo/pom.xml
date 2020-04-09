@@ -7,12 +7,11 @@
     <parent>
         <groupId>com.rainbow</groupId>
         <artifactId>rainbow</artifactId>
-        <version>1.0.0.RELEASE</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.rainbow</groupId>
     <artifactId>rainbow-common-pojo</artifactId>
-    <version>1.0.0.RELEASE</version>
 
     <dependencies>
         <dependency>

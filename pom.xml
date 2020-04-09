@@ -12,12 +12,13 @@
 
     <groupId>com.rainbow</groupId>
     <artifactId>rainbow</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>1.0.0</version>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>rainbow-common-pojo</module>
+        <module>rainbow-starter</module>
     </modules>
 
     <properties>
@@ -28,6 +29,14 @@
     <!-- jar包管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- *****************************私有jar***************************** -->
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-starter-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- *****************************第三方jar***************************** -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
