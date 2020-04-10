@@ -11,6 +11,7 @@
 
     <artifactId>rainbow-starter</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>rainbow-starter-web</module>
     </modules>
