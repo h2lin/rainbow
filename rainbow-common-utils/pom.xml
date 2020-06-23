@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rainbow-starter</artifactId>
-    <packaging>pom</packaging>
-
-
-    <modules>
-        <module>rainbow-starter-web</module>
-        <module>rainbow-starter-configure</module>
-    </modules>
+    <artifactId>rainbow-common-utils</artifactId>
 
 
 </project>

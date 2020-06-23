@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @Setter
 @ApiModel(description = "通用请求")
 public class Req<T> extends BaseDto {
-    @Valid  // Spring自带
+    @Valid
     @ApiModelProperty(value = "通用请求，请求头，携带通用数据")
     private ReqHead head;
 

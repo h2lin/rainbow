@@ -26,7 +26,7 @@ public class RespHead extends BaseDto {
 //    @ApiModelProperty(value = "响应时间戳", example = "1554551377629")
 //    private Long timestamp;
 
-    // 使用“标准状态码 + 标准返回信息”赋值
+    // 方式1：使用“标准状态码 + 标准返回信息”赋值
     public RespHead(IBaseReturnCodeEntity returnCodeEntity) {
         if (returnCodeEntity == null) {
             return;
@@ -35,7 +35,7 @@ public class RespHead extends BaseDto {
         this.msg = returnCodeEntity.getMsg();
     }
 
-    // 使用“标准状态码 + 自定义返回信息”赋值
+    // 方式2：使用“标准状态码 + 自定义返回信息”赋值
     public RespHead(IBaseReturnCodeEntity returnCodeEntity, String msg) {
         if (returnCodeEntity != null) {
             this.code = returnCodeEntity.getCode();
@@ -43,7 +43,7 @@ public class RespHead extends BaseDto {
         this.msg = msg;
     }
 
-    // 使用“自定义状态码 + 自定义返回信息”赋值
+    // 方式3：使用“自定义状态码 + 自定义返回信息”赋值
     public RespHead(String code, String msg) {
         this.code = code;
         this.msg = msg;

@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.3.1.RELEASE</version>
     </parent>
 
     <groupId>com.rainbow</groupId>
@@ -18,10 +18,12 @@
 
     <modules>
         <module>rainbow-common-pojo</module>
+        <module>rainbow-common-utils</module>
         <module>rainbow-starter</module>
     </modules>
 
     <properties>
+        <rainbow>1.0.0</rainbow><!-- rainbow这里必须写死，如果采用${peoject.version}方式，在引用模块会把引用的字面字符传过去，然后在引用模块用字面字符进行变量的解析 -->
         <fastjson>1.2.58</fastjson>
         <springfox-swagger2>2.9.2</springfox-swagger2>
     </properties>
@@ -33,15 +35,29 @@
             <dependency>
                 <groupId>com.rainbow</groupId>
                 <artifactId>rainbow-starter-web</artifactId>
-                <version>${project.version}</version>
+                <version>${rainbow}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-starter-configure</artifactId>
+                <version>${rainbow}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-common-pojo</artifactId>
+                <version>${rainbow}</version>
+            </dependency>
+
 
             <!-- *****************************第三方jar***************************** -->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox-swagger2}</version>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson}</version>
             </dependency>
+
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -53,23 +69,42 @@
                     </exclusion>
                 </exclusions>-->
             </dependency>
+            <!--<dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger2}</version>
+            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
-    <!-- 默认依赖jar包 -->
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
+    <!-- 使用aliyun镜像 -->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson}</version>
-        </dependency>
-    </dependencies>
 
+    <!--需要发布时把此注释打开<distributionManagement>
+        <repository>
+            <id>nexus-maven-central</id>
+            <name>releases</name>
+            <url>http://192.168.xxx.xxx:xxxx/repository/nexus-maven-central/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>nexus-maven-central</id>
+            <name>snapshots</name>
+            <url>http://192.168.xxx.xxx:xxxx/repository/nexus-maven-central/</url>
+        </snapshotRepository>
+    </distributionManagement>-->
 </project>

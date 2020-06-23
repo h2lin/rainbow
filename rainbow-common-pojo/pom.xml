@@ -10,24 +10,33 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.rainbow</groupId>
     <artifactId>rainbow-common-pojo</artifactId>
 
     <dependencies>
+        <!-- =====================第三方jar===================== -->
+        <!-- 代码插件 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- json序列化 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson}</version>
+        </dependency>
+        <!-- swagger，文档页面生成，用于前后端接口对接 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-
+        <!-- Bean参数校验 -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>
     </dependencies>
 
-    
 </project>
