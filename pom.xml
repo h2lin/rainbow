@@ -26,6 +26,7 @@
         <rainbow>1.0.0</rainbow><!-- rainbow这里必须写死，如果采用${peoject.version}方式，在引用模块会把引用的字面字符传过去，然后在引用模块用字面字符进行变量的解析 -->
         <fastjson>1.2.58</fastjson>
         <springfox-swagger2>2.9.2</springfox-swagger2>
+        <mybatis-spring-boot-starter>2.0.1</mybatis-spring-boot-starter>
     </properties>
 
     <!-- jar包管理 -->
@@ -74,6 +75,18 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${springfox-swagger2}</version>
             </dependency>-->
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter}</version>
+                <!--<exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>-->
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

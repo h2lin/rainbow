@@ -16,6 +16,7 @@
     <modules>
         <module>rainbow-starter-web</module>
         <module>rainbow-starter-configure</module>
+        <module>rainbow-starter-mybatis</module>
     </modules>
 
 
