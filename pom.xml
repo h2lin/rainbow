@@ -19,7 +19,9 @@
     <modules>
         <module>rainbow-common-pojo</module>
         <module>rainbow-common-utils</module>
-        <module>rainbow-starter</module>
+        <module>rainbow-starter-configure</module>
+        <module>rainbow-starter-web</module>
+        <module>rainbow-starter-mybatis</module>
     </modules>
 
     <properties>
@@ -35,7 +37,13 @@
             <!-- *****************************私有jar***************************** -->
             <dependency>
                 <groupId>com.rainbow</groupId>
-                <artifactId>rainbow-starter-web</artifactId>
+                <artifactId>rainbow-common-pojo</artifactId>
+                <version>${rainbow}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-common-utils</artifactId>
                 <version>${rainbow}</version>
             </dependency>
 
@@ -47,10 +55,15 @@
 
             <dependency>
                 <groupId>com.rainbow</groupId>
-                <artifactId>rainbow-common-pojo</artifactId>
+                <artifactId>rainbow-starter-web</artifactId>
                 <version>${rainbow}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-starter-mybatis</artifactId>
+                <version>${rainbow}</version>
+            </dependency>
 
             <!-- *****************************第三方jar***************************** -->
             <dependency>

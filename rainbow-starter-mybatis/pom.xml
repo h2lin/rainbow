@@ -3,24 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>rainbow-starter</artifactId>
+        <artifactId>rainbow</artifactId>
         <groupId>com.rainbow</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rainbow-starter-configure</artifactId>
+    <artifactId>rainbow-starter-mybatis</artifactId>
 
     <dependencies>
-        <!-- springboot服务启动核心包，支持SpringApplication.run(xxx.class) -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
-        <!-- 自动配置包，支持@SpringBootApplication注解 -->
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
+        <!-- 连接池不配置，使用默认的Hikari，后续可考虑用druid，性能差不多但扩展性好一点 -->
     </dependencies>
 </project>
