@@ -29,6 +29,7 @@
         <fastjson>1.2.58</fastjson>
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <mybatis-spring-boot-starter>2.0.1</mybatis-spring-boot-starter>
+        <mapper-spring-boot-starter>2.1.5</mapper-spring-boot-starter>
     </properties>
 
     <!-- jar包管理 -->
@@ -89,6 +90,7 @@
                 <version>${springfox-swagger2}</version>
             </dependency>-->
 
+            <!-- mybatis官方提供的starter -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -99,6 +101,13 @@
                         <artifactId>spring-boot-starter-logging</artifactId>
                     </exclusion>
                 </exclusions>-->
+            </dependency>
+
+            <!-- tkMybatis引入 -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mapper-spring-boot-starter}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

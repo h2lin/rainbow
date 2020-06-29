@@ -23,5 +23,11 @@
         </dependency>
 
         <!-- 连接池不配置，使用默认的Hikari，后续可考虑用druid，性能差不多但扩展性好一点 -->
+
+        <!-- tkMybatis引入 -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>
