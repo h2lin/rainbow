@@ -22,6 +22,7 @@
         <module>rainbow-starter-configure</module>
         <module>rainbow-starter-web</module>
         <module>rainbow-starter-mybatis</module>
+        <module>rainbow-starter-common</module>
     </modules>
 
     <properties>
@@ -63,6 +64,12 @@
             <dependency>
                 <groupId>com.rainbow</groupId>
                 <artifactId>rainbow-starter-mybatis</artifactId>
+                <version>${rainbow}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-starter-common</artifactId>
                 <version>${rainbow}</version>
             </dependency>
 
