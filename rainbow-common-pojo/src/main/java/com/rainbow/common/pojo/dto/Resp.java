@@ -1,5 +1,6 @@
 package com.rainbow.common.pojo.dto;
 
+import com.rainbow.common.pojo.enums.ReturnCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -26,4 +27,10 @@ public class Resp<T> extends BaseDto {
 
     @ApiModelProperty(value = "签名", example="4EABF9EDBECFE4E9084181D6B5D59A92")
     private String sign;
+
+    public Resp(T body) {
+        this.head.setCode(ReturnCodeEnum.SUCCESS.getCode());
+        this.head.setMsg(ReturnCodeEnum.SUCCESS.getMsg());
+        this.body = body;
+    }
 }

@@ -30,6 +30,12 @@
             <artifactId>mapper-spring-boot-starter</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+
         <!-- lombok工具 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -42,6 +48,10 @@
         <dependency>
             <groupId>com.rainbow</groupId>
             <artifactId>rainbow-starter-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rainbow</groupId>
+            <artifactId>rainbow-common-utils</artifactId>
         </dependency>
     </dependencies>
 </project>

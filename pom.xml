@@ -31,6 +31,8 @@
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <mybatis-spring-boot-starter>2.0.1</mybatis-spring-boot-starter>
         <mapper-spring-boot-starter>2.1.5</mapper-spring-boot-starter>
+        <pagehelper>5.1.8</pagehelper>
+        <joda-time>2.10.2</joda-time>
     </properties>
 
     <!-- jar包管理 -->
@@ -115,6 +117,20 @@
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${mapper-spring-boot-starter}</version>
+            </dependency>
+
+            <!-- pagehelper插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper}</version>
+            </dependency>
+
+            <!-- 用于DateUtil工具类 -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

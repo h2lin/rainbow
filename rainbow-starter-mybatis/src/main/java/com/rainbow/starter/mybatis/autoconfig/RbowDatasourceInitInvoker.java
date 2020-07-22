@@ -1,11 +1,13 @@
 package com.rainbow.starter.mybatis.autoconfig;
 
+import com.github.pagehelper.PageInterceptor;
 import com.rainbow.starter.common.support.beansupport.UniqueBeanNameGenerator;
 import com.rainbow.starter.mybatis.constants.RbowDatasourceConstant;
 import com.rainbow.starter.mybatis.properties.RbowDatasourceProperties;
 import com.rainbow.starter.mybatis.properties.RbowSingleDatasourceProperties;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
@@ -47,6 +49,9 @@ public class RbowDatasourceInitInvoker extends AbstractDatasourceInitInvoker {
             log.error(e.getMessage(), e);
         }
 
+        // 2.增加插件：PageHelper
+        fcBean.setPlugins((new Interceptor[] { mybatisSqlLogInterceptor, this.buildPageInterceptor() }));
+
         // 2.注册Bean
         String sqlSessionFactoryBeanName = super.addSuffixBeanClassName(
                 dsName, RbowDatasourceConstant.SQL_SESSION_FACTORY_BEAN_NAME_SUFFIX);
@@ -77,5 +82,22 @@ public class RbowDatasourceInitInvoker extends AbstractDatasourceInitInvoker {
         // super.registerBean(scanConfBeanName, scanConf);
         // registerBean失效，必须采用postProcessBeanDefinitionRegistry注入
         scanConf.postProcessBeanDefinitionRegistry(RbowDatasourceAutoConfig.RegistPostProcessor.getRegistry());
+    }
+
+    /**
+     * Mybatis插件：分页拦截器
+     * @return
+     */
+    private PageInterceptor buildPageInterceptor() {
+        PageInterceptor pageHelper = new PageInterceptor();
+        Properties p = new Properties();
+        // 分页合理化参数
+        // 1.开启优化，如果开启优化，在分页页码结果没有数据的时候,会显示有数据的页码数据
+        p.setProperty("reasonable", "true");
+        // 2.是否支持接口参数来传递分页参数，默认false
+        p.setProperty("supportMethodsArguments", "true");
+        p.setProperty("params", "count=countSql");
+        pageHelper.setProperties(p);
+        return pageHelper;
     }
 }

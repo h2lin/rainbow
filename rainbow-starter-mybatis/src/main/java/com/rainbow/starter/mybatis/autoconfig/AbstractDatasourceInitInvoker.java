@@ -1,5 +1,6 @@
 package com.rainbow.starter.mybatis.autoconfig;
 
+import com.rainbow.starter.mybatis.plugin.MybatisSqlLogInterceptor;
 import com.rainbow.starter.mybatis.properties.RbowDatasourceProperties;
 import com.rainbow.starter.mybatis.properties.RbowSingleDatasourceProperties;
 import com.zaxxer.hikari.HikariDataSource;
@@ -19,9 +20,15 @@ import java.util.Map;
 public abstract class AbstractDatasourceInitInvoker {
      private final ConfigurableBeanFactory beanFactory;
 
+     protected MybatisSqlLogInterceptor mybatisSqlLogInterceptor;
+
+
     // 在构造方法中初始化。加载Bean时即可自动执行。且自动获取入参的Bean。
     public AbstractDatasourceInitInvoker(final ConfigurableBeanFactory beanFactory,
              final RbowDatasourceProperties rbowDatasourceProperties) {
+        // 注入Mybatis日志拦截器插件Bean
+        this.mybatisSqlLogInterceptor = new MybatisSqlLogInterceptor();
+
         this.beanFactory = beanFactory;
         this.injectDataSources(rbowDatasourceProperties);
     }
