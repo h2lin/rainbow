@@ -84,4 +84,9 @@ public class RbowDatasourceAutoConfig {
             registry.registerBeanDefinition(REGIST_BEAN_NAME, beanDef);
         }
     }
+
+    @Bean
+    public InitTransactionalAnnotationValue initTransactionalAnnotationValue(final BeanFactory beanFactory) {
+        return new InitTransactionalAnnotationValue(beanFactory);
+    }
 }

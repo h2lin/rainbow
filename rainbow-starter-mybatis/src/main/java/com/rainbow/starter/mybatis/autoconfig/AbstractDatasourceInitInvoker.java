@@ -1,10 +1,13 @@
 package com.rainbow.starter.mybatis.autoconfig;
 
+import com.rainbow.starter.common.constant.SymbolConstant;
+import com.rainbow.starter.mybatis.constants.RbowDatasourceConstant;
 import com.rainbow.starter.mybatis.plugin.MybatisSqlLogInterceptor;
 import com.rainbow.starter.mybatis.properties.RbowDatasourceProperties;
 import com.rainbow.starter.mybatis.properties.RbowSingleDatasourceProperties;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -121,15 +124,44 @@ public abstract class AbstractDatasourceInitInvoker {
 
     // 初始化数据源。如：注入SqlSessionFactory和MapperScannerConfigurer等
     private void initDataSource(String dsName, DataSource ds, RbowSingleDatasourceProperties dsProp) {
-        // 初始化SqlSessionFactory
-        String sqlSessionFactoryBeanName = initSqlSessionFactory(dsName, ds, dsProp);
+        // 配置SqlSessionFactoryBean
+        String sqlSessionFactoryBeanName = registSqlSessionFactoryBean(dsName, ds, dsProp);
 
-        // 初始化MapperScannerConfiguer
-        this.initMapperScannerConfigurer(dsName, sqlSessionFactoryBeanName, dsProp);
+        // 配置MapperScannerConfiguer
+        this.registMapperScannerConfigurer(dsName, sqlSessionFactoryBeanName, dsProp);
+
+        // 配置DataSource的DataSourceTransactionManager
+        String dataSourceTransactionManagerName = this.addSuffixBeanClassName(
+                dsName, RbowDatasourceConstant.TRANSACTION_MANAGER_NAME_SUFFIX);
+        this.registDataSourceTransactionManager(dataSourceTransactionManagerName, ds);
+
+        // 保存数据源transactionBasePackagesName和数据源dataSourceTransactionManager的Map映射。
+        // 方便后续方法上根据包路径找到对应的TransactionManager
+        this.saveTransactionManagerInfo(dsProp.getTransactionBasePackages(), dataSourceTransactionManagerName);
     }
 
-    // 注册SqlSessionFactory，并返回SqlSessionFactory的Bean名称
-    protected abstract String initSqlSessionFactory(String dsName, DataSource ds, RbowSingleDatasourceProperties dsProp);
+    // 注册SqlSessionFactoryBean，并返回SqlSessionFactory的Bean名称
+    protected abstract String registSqlSessionFactoryBean(String dsName
+            , DataSource ds, RbowSingleDatasourceProperties dsProp);
 
-    protected abstract void initMapperScannerConfigurer(String dsName, String sqlSessionFactoryBeanName, RbowSingleDatasourceProperties dsProp);
+    // 注册MapperScannerConfigurer
+    protected abstract void registMapperScannerConfigurer(String dsName
+            , String sqlSessionFactoryBeanName, RbowSingleDatasourceProperties dsProp);
+
+    // 注册DataSourceTransactionManager
+    private void registDataSourceTransactionManager(String dataSourceTransactionManagerName, DataSource ds) {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager(ds);
+        this.registerBean(dataSourceTransactionManagerName, dataSourceTransactionManager);
+    }
+    // 保存数据源basepackageName和数据源dataSourceTransactionManager的Map映射。方便后续方法上根据包路径找到对应的TransactionManager
+    private void saveTransactionManagerInfo(String transactionBasePackagesName, String dataSourceTransactionManagerName) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(transactionBasePackagesName)) {
+            return;
+        }
+
+        String[] transactionBasePackageArray = transactionBasePackagesName.split(SymbolConstant.COMMA);
+
+        InitTransactionalAnnotationValue.getMultiTransactionManagerNameMap().putIfAbsent(
+                transactionBasePackagesName, dataSourceTransactionManagerName);
+    }
 }

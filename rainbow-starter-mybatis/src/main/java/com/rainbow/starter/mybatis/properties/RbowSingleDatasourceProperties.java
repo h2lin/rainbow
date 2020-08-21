@@ -26,7 +26,7 @@ public class RbowSingleDatasourceProperties {
     // mapper.xml扫描文件路径。如classpath*:com/xxx/mapper/**/*Mapper.xml
     private String mapperXmlLocation;
     // 事务控制所在的顶层包名，多个包用英文逗号隔开。如com.xx.xxx
-    // private String transactionBasePackages;
+    private String transactionBasePackages;
 
     // =========================== Hikari连接池参数 ========================
     // 获取连接超时时间，默认30s

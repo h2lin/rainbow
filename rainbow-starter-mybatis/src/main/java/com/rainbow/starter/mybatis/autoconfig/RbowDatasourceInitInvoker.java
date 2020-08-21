@@ -36,7 +36,7 @@ public class RbowDatasourceInitInvoker extends AbstractDatasourceInitInvoker {
     }
 
     @Override
-    protected String initSqlSessionFactory(String dsName, DataSource ds, RbowSingleDatasourceProperties dsProp) {
+    protected String registSqlSessionFactoryBean(String dsName, DataSource ds, RbowSingleDatasourceProperties dsProp) {
         // 1.生成Bean
         SqlSessionFactoryBean fcBean = new SqlSessionFactoryBean();
         fcBean.setDataSource(ds);
@@ -61,7 +61,7 @@ public class RbowDatasourceInitInvoker extends AbstractDatasourceInitInvoker {
 
     // 注意：因为使用了tk，注入的是tk的MapperScannerConfigurer
     @Override
-    protected void initMapperScannerConfigurer(
+    protected void registMapperScannerConfigurer(
             String dsName, String sqlSessionFactoryBeanName, RbowSingleDatasourceProperties dsProp) {
         // 1.生成Bean
         MapperScannerConfigurer scanConf = new MapperScannerConfigurer();
@@ -78,7 +78,7 @@ public class RbowDatasourceInitInvoker extends AbstractDatasourceInitInvoker {
 
         // 2.注册Bean
         String scanConfBeanName = super.addSuffixBeanClassName(
-                dsName, MapperScannerConfigurer.class.getSimpleName());
+                dsName, RbowDatasourceConstant.MAPPER_SCANNER_CONFIGURERNAME_SUFFIX);
         // super.registerBean(scanConfBeanName, scanConf);
         // registerBean失效，必须采用postProcessBeanDefinitionRegistry注入
         scanConf.postProcessBeanDefinitionRegistry(RbowDatasourceAutoConfig.RegistPostProcessor.getRegistry());

@@ -12,10 +12,13 @@ public class RbowDatasourceConstant {
     // 数据源默认驱动名
     public static final String DEFAULT_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
-    // SqlSessionFactoryBean的bean名称组成后缀
-    public static final String SQL_SESSION_FACTORY_BEAN_NAME_SUFFIX = "SqlSessionFactoryBean";
+    // 数据源配置的SqlSessionFactoryBean的Bean名称组成（后缀）
+    public static final String SQL_SESSION_FACTORY_BEAN_NAME_SUFFIX = "DataSourceSqlSessionFactoryBean";
 
-//    /** 事务bean名称组成部分（后缀） */
-//    public static final String TRANSACTION_MANAGER_NAME_SUFFIX = "DataSourceTransactionManager";
+    // 数据源配置的MapperScannerConfigurer的Bean名称组成（后缀）
+    public static final String MAPPER_SCANNER_CONFIGURERNAME_SUFFIX = "DataSourceMapperScannerConfigurer";
+
+    // 数据源配置的TransactionManager的Bean名称组成部分（后缀）
+    public static final String TRANSACTION_MANAGER_NAME_SUFFIX = "DataSourceTransactionManager";
 
 }
