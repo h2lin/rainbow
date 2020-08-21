@@ -28,7 +28,7 @@ public class RbowSingleDatasourceProperties {
     // 事务控制所在的顶层包名，多个包用英文逗号隔开。如com.xx.xxx
     private String transactionBasePackages;
 
-    // =========================== Hikari连接池参数 ========================
+    // =========================== Hikari连接池参数 =========================
     // 获取连接超时时间，默认30s
     private long connectionTimeout = 30000;
     // 验证一次数据库连接池连接是否为null的时间 默认3s
