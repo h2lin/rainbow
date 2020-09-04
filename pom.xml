@@ -23,10 +23,12 @@
         <module>rainbow-starter-web</module>
         <module>rainbow-starter-mybatis</module>
         <module>rainbow-starter-common</module>
+        <module>rainbow-starter-test</module>
     </modules>
 
     <properties>
         <rainbow>1.0.0</rainbow><!-- rainbow这里必须写死，如果采用${peoject.version}方式，在引用模块会把引用的字面字符传过去，然后在引用模块用字面字符进行变量的解析 -->
+        <spring-boot>2.3.1.RELEASE</spring-boot>
         <fastjson>1.2.58</fastjson>
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <mybatis-spring-boot-starter>2.0.1</mybatis-spring-boot-starter>
@@ -72,6 +74,12 @@
             <dependency>
                 <groupId>com.rainbow</groupId>
                 <artifactId>rainbow-starter-common</artifactId>
+                <version>${rainbow}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.rainbow</groupId>
+                <artifactId>rainbow-starter-test</artifactId>
                 <version>${rainbow}</version>
             </dependency>
 
@@ -131,6 +139,25 @@
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${joda-time}</version>
+            </dependency>
+
+            <!-- ************************ 覆盖SpringBoot默认的包版本 ************************ -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot}</version>
+                <!--<exclusions>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>-->
             </dependency>
         </dependencies>
     </dependencyManagement>
