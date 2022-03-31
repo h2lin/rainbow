@@ -28,7 +28,7 @@
 
     <properties>
         <rainbow>1.0.0</rainbow><!-- rainbow这里必须写死，如果采用${peoject.version}方式，在引用模块会把引用的字面字符传过去，然后在引用模块用字面字符进行变量的解析 -->
-        <spring-boot>2.3.1.RELEASE</spring-boot>
+        <spring-boot>2.5.12</spring-boot>
         <fastjson>1.2.58</fastjson>
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <mybatis-spring-boot-starter>2.0.1</mybatis-spring-boot-starter>
